@@ -1,0 +1,2 @@
+import {sql} from '@vercel/postgres';
+export async function init(){await sql`CREATE TABLE IF NOT EXISTS reminders (endpoint TEXT PRIMARY KEY, subscription JSONB NOT NULL, meds JSONB NOT NULL, timezone TEXT NOT NULL, updated_at TIMESTAMPTZ DEFAULT NOW())`;await sql`CREATE TABLE IF NOT EXISTS deliveries (endpoint TEXT NOT NULL, med_id TEXT NOT NULL, local_date TEXT NOT NULL, local_time TEXT NOT NULL, PRIMARY KEY(endpoint,med_id,local_date,local_time))`}
